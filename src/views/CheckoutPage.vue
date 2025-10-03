@@ -309,9 +309,11 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "../store/cartStore";
+import { usePurchasesStore } from "../store/purchasesStore";
 
 const router = useRouter();
 const cartStore = useCartStore();
+const purchasesStore = usePurchasesStore();
 
 const formData = ref({
   firstName: "",
@@ -400,6 +402,7 @@ const handleSubmit = async () => {
         price: item.price,
         quantity: item.quantity,
         total: item.price * item.quantity,
+        image: item.image,
       })),
       subtotal: cartTotal.value,
       tax: tax.value,
@@ -443,7 +446,23 @@ const handleSubmit = async () => {
     console.log("Buyer saved with ID:", buyerResult.name);
     console.log("Sales saved with ID:", salesResult.name);
 
-    // Success
+    purchasesStore.addPurchase({
+      items: salesData.items,
+      subtotal: salesData.subtotal,
+      tax: salesData.tax,
+      total: salesData.total,
+      shippingInfo: {
+        firstName: formData.value.firstName,
+        lastName: formData.value.lastName,
+        phone: formData.value.phone,
+        email: formData.value.email,
+        address: formData.value.address,
+        city: formData.value.city,
+        postalCode: formData.value.postalCode,
+      },
+      paymentMethod: formData.value.paymentMethod,
+    });
+
     alert(
       "Your order has been confirmed successfully! We will contact you soon"
     );

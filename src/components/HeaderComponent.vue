@@ -2,9 +2,11 @@
   <header class="header-main">
     <div class="main-header bg-primary py-3">
       <div class="container">
-        <div class="d-flex align-items-center justify-content-between">
-          <!-- Improved header layout for better alignment -->
-          <div class="d-flex align-items-center gap-3 flex-grow-1">
+        <div
+          class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 gap-lg-0"
+        >
+          <!-- Logo and Search Row -->
+          <div class="d-flex align-items-center gap-2 gap-md-3 flex-grow-1">
             <div class="header-logo">
               <router-link to="/" class="logo text-white text-decoration-none">
                 <h3 class="mb-0">
@@ -15,6 +17,7 @@
               </router-link>
             </div>
 
+            <!-- Made search bar more flexible on mobile -->
             <div class="header-search flex-grow-1">
               <div class="search-bar">
                 <div class="input-group">
@@ -33,35 +36,66 @@
             </div>
           </div>
 
-          <!-- Added favorites icon and improved actions layout -->
-          <div class="d-flex align-items-center gap-2 gap-md-3">
-            <router-link
-              to="/favorites"
-              class="text-white position-relative header-icon"
-              title="المفضلات"
-            >
-              <i class="bi bi-heart fs-4"></i>
-              <span
-                v-if="wishlistCount > 0"
-                class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+          <!-- Actions Row -->
+          <div
+            class="d-flex align-items-center justify-content-between justify-content-lg-end gap-2 gap-md-3 mt-2 mt-lg-0"
+          >
+            <div class="d-flex align-items-center gap-2 gap-md-3">
+              <router-link
+                to="/favorites"
+                class="text-white position-relative header-icon"
+                title="Favorites"
               >
-                {{ wishlistCount }}
-              </span>
-            </router-link>
+                <i class="bi bi-heart fs-5 fs-md-4"></i>
+                <span
+                  v-if="wishlistCount > 0"
+                  class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+                >
+                  {{ wishlistCount }}
+                </span>
+              </router-link>
 
-            <router-link
-              to="/cart"
-              class="text-white position-relative header-icon"
-              title="السلة"
-            >
-              <i class="bi bi-cart3 fs-4"></i>
-              <span
-                v-if="cartCount > 0"
-                class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+              <router-link
+                to="/cart"
+                class="text-white position-relative header-icon"
+                title="Cart"
               >
-                {{ cartCount }}
-              </span>
-            </router-link>
+                <i class="bi bi-cart3 fs-5 fs-md-4"></i>
+                <span
+                  v-if="cartCount > 0"
+                  class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+                >
+                  {{ cartCount }}
+                </span>
+              </router-link>
+
+              <div
+                v-if="authStore.isAuthenticated"
+                class="d-flex align-items-center gap-2"
+              >
+                <span class="text-white d-none d-lg-inline small">{{
+                  authStore.user.name
+                }}</span>
+                <button
+                  class="btn btn-sm btn-outline-light"
+                  @click="handleLogout"
+                >
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span class="d-none d-md-inline ms-1">Logout</span>
+                </button>
+              </div>
+              <div v-else class="d-flex gap-2">
+                <router-link to="/login" class="btn btn-sm btn-outline-light">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span class="d-none d-md-inline ms-1">Login</span>
+                </router-link>
+                <router-link to="/signup" class="btn btn-sm btn-warning">
+                  <i class="bi bi-person-plus"></i>
+                  <span class="d-none d-md-inline ms-1">Sign Up</span>
+                </router-link>
+              </div>
+            </div>
+
             <div class="header-menu">
               <nav class="navbar navbar-expand-lg p-0">
                 <button
@@ -113,6 +147,13 @@
                         </li>
                       </ul>
                     </li>
+                    <li v-if="authStore.isAuthenticated" class="nav-item">
+                      <router-link
+                        to="/my-purchases"
+                        class="nav-link text-white"
+                        >My Purchases</router-link
+                      >
+                    </li>
                     <li class="nav-item">
                       <router-link to="/contact" class="nav-link text-white"
                         >Contact</router-link
@@ -121,31 +162,6 @@
                   </ul>
                 </div>
               </nav>
-            </div>
-            <div
-              v-if="authStore.isAuthenticated"
-              class="d-flex align-items-center gap-2"
-            >
-              <span class="text-white d-none d-lg-inline">{{
-                authStore.user.name
-              }}</span>
-              <button
-                @click="handleLogout"
-                class="btn btn-sm btn-outline-light"
-              >
-                <i class="bi bi-box-arrow-right"></i>
-                <span class="d-none d-lg-inline ms-1">Exit</span>
-              </button>
-            </div>
-            <div v-else class="d-flex gap-2">
-              <router-link to="/login" class="btn btn-sm btn-outline-light">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span class="d-none d-lg-inline ms-1">Log in</span>
-              </router-link>
-              <router-link to="/signup" class="btn btn-sm btn-warning">
-                <i class="bi bi-person-plus"></i>
-                <span class="d-none d-lg-inline ms-1">Sign up</span>
-              </router-link>
             </div>
           </div>
         </div>
@@ -276,25 +292,29 @@ const handleLogout = () => {
   line-height: 1;
 }
 
-/* Improved responsive layout */
+/* Enhanced responsive styles for better mobile experience */
 @media (max-width: 991px) {
+  .main-header {
+    padding: 0.75rem 0 !important;
+  }
+
   .navbar-mobile-menu {
     position: absolute;
     top: calc(100% + 0.75rem);
     right: 0;
-    background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
-    padding: 1.25rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    min-width: 250px;
+    background: #232f3e;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 220px;
     z-index: 1000;
   }
 
   .navbar-nav {
     flex-direction: column !important;
     width: 100%;
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
   .nav-item {
@@ -305,18 +325,33 @@ const handleLogout = () => {
     padding: 0.75rem 1rem !important;
     display: block;
     width: 100%;
-    border-radius: 6px;
+    border-radius: 4px;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 153, 0, 0.15) !important;
   }
 
   .dropdown-menu {
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: #131921;
     margin-top: 0.5rem;
-    border-radius: 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
   }
 
   .dropdown-item {
     padding: 0.75rem 1rem;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(255, 153, 0, 0.15);
+    color: #ff9900;
   }
 
   .search-bar .form-control {
@@ -326,6 +361,10 @@ const handleLogout = () => {
 
   .search-bar .btn {
     padding: 0.5rem 1rem;
+  }
+
+  .logo h3 {
+    font-size: 1.1rem;
   }
 }
 
@@ -337,6 +376,56 @@ const handleLogout = () => {
 
   .header-icon i {
     font-size: 1.1rem;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+/* Added extra small screen optimizations */
+@media (max-width: 576px) {
+  .main-header {
+    padding: 0.5rem 0 !important;
+  }
+
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .logo h3 {
+    font-size: 1rem;
+  }
+
+  .search-bar .form-control {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .search-bar .btn {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .header-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header-icon i {
+    font-size: 1rem;
+  }
+
+  .btn-sm {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+    min-width: 18px;
   }
 }
 </style>

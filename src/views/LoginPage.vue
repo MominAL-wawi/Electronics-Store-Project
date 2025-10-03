@@ -2,10 +2,10 @@
   <div class="login-page">
     <div class="container py-5">
       <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-5">
           <div class="card shadow">
-            <div class="card-body p-5">
-              <h2 class="text-center mb-4">Sign in</h2>
+            <div class="card-body p-3 p-sm-4 p-md-5">
+              <h2 class="text-center mb-4">Login</h2>
 
               <div v-if="errorMessage" class="alert alert-danger" role="alert">
                 {{ errorMessage }}
@@ -15,10 +15,10 @@
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
-                    type="email"
-                    class="form-control"
                     id="email"
                     v-model="loginData.email"
+                    type="email"
+                    class="form-control"
                     required
                     placeholder="Enter your email"
                   />
@@ -27,10 +27,10 @@
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
                   <input
-                    type="password"
-                    class="form-control"
                     id="password"
                     v-model="loginData.password"
+                    type="password"
+                    class="form-control"
                     required
                     placeholder="Enter your password"
                   />
@@ -45,12 +45,12 @@
                     v-if="isLoading"
                     class="spinner-border spinner-border-sm me-2"
                   ></span>
-                  {{ isLoading ? "Signing in..." : "Login" }}
+                  {{ isLoading ? "Logging in..." : "Login" }}
                 </button>
 
                 <div class="text-center">
                   <p class="mb-0">
-                    Don’t have an account?
+                    Don't have an account?
                     <router-link to="/signup" class="text-decoration-none"
                       >Create a new account</router-link
                     >
@@ -91,7 +91,7 @@ const handleLogin = async () => {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to connect to the server");
+      throw new Error("فشل في الاتصال بالخادم");
     }
 
     const users = await response.json();
@@ -121,11 +121,10 @@ const handleLogin = async () => {
       authStore.login(userData);
       router.push("/");
     } else {
-      errorMessage.value = "Incorrect email or password";
+      errorMessage.value = "البريد الإلكتروني أو كلمة المرور غير صحيحة";
     }
   } catch (error) {
-    errorMessage.value =
-      "A connection error occurred. Please check your internet connection.";
+    errorMessage.value = "حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت.";
   } finally {
     isLoading.value = false;
   }
@@ -149,5 +148,29 @@ const handleLogin = async () => {
   padding: 12px;
   font-size: 1.1rem;
   border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .login-page {
+    min-height: calc(100vh - 150px);
+    padding: 1rem 0;
+  }
+
+  .card-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
 }
 </style>

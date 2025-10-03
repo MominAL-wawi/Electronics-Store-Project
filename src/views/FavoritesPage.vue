@@ -8,7 +8,7 @@
             Favorites
           </h2>
           <p class="text-muted">
-            {{ wishlistCount }} Product in favorites list
+            {{ wishlistCount }} products in favorites list
           </p>
         </div>
       </div>
@@ -17,11 +17,11 @@
         <i class="bi bi-heart display-1 text-muted mb-3"></i>
         <h4 class="text-muted mb-3">Favorites list is empty</h4>
         <p class="text-muted mb-4">
-          You haven’t added any products to favorites yet
+          You haven't added any products to favorites yet
         </p>
         <router-link to="/products" class="btn btn-primary">
           <i class="bi bi-shop me-2"></i>
-          Browse Products
+          Browse products
         </router-link>
       </div>
 

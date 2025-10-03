@@ -1,79 +1,68 @@
-Electronics Store
+# Electronics Store - Vue.js E-commerce Application
 
-A full-featured e-commerce store built with Vue.js 3 and Bootstrap 5 for selling electronic products with a complete authentication system, shopping cart, and wishlist management.
+A comprehensive e-commerce platform built with Vue.js 3 and Bootstrap 5 for selling electronic products, featuring a complete authentication system, shopping cart management, favorites, and purchase history tracking.
 
-🌟 Features
-Authentication System
+## 🌟 Features
 
-User Registration: Create a new account with data stored in Firebase
+### Authentication System
 
-Login: Authenticate users with email and password
+- **User Registration**: Create new accounts with data stored in Firebase
+- **User Login**: Authenticate users using email and password
+- **Protected Routes**: Secure pages requiring authentication (Cart, Checkout, Favorites, My Purchases)
+- **Public Pages**: Browse products, search, and view details without login
+- **Logout**: Sign out functionality with session management
 
-Protected Pages: All pages are protected and only accessible after login
+### Product Management
 
-Logout: Option to log out of the account
+- **Product Display**: View all products with images, prices, and details
+- **Category Filtering**: Filter products by categories (Smartphones, Laptops, Tablets, Accessories, Wearables, TVs)
+- **Brand Filtering**: Filter products by brands (Apple, Samsung, Dell, HP, Sony, LG, Xiaomi, Huawei)
+- **Advanced Search**: Search across product names, categories, and brands from the header
+- **Product Details**: Dedicated page for each product with full specifications
 
-Product Management
+### Shopping Cart
 
-View Products: Display all products with images, prices, and details
+- **Add to Cart**: Add products to shopping cart with quantity selection
+- **Quantity Management**: Increase or decrease product quantities
+- **Remove Items**: Delete products from cart
+- **Total Calculation**: Automatic price calculation with subtotal and total
+- **Persistent Cart**: Cart contents saved in localStorage per user
 
-Product Categories: Categorize products by type (Smartphones, Laptops, Tablets, etc.)
+### Favorites (Wishlist)
 
-Filter by Brand: Filter products by brand (Apple, Samsung, Dell, etc.)
+- **Add to Favorites**: Mark products as favorites with heart icon
+- **Favorites Page**: Dedicated page displaying all favorite products
+- **Remove from Favorites**: Remove products from favorites list
+- **Favorites Counter**: Display number of favorite items in header
 
-Advanced Search: Search by product names, categories, and brands
+### Purchase History
 
-Auto Filter Selection: When searching, the matching filter is automatically selected in the sidebar
+- **Order Tracking**: Track all completed purchases per user
+- **My Purchases Page**: View purchase history with order details
+- **Order Information**: Display items, quantities, prices, and order dates
+- **Persistent Storage**: Purchase history saved locally per user
 
-Shopping Cart
+### User Interface
 
-Add to Cart: Add products to the shopping cart
+- **Responsive Design**: Works seamlessly on mobile, tablet, and desktop devices
+- **Bootstrap 5**: Modern UI components and styling
+- **Easy Navigation**: Clear navigation menu in header with mobile support
+- **Professional Icons**: Bootstrap Icons throughout the application
+- **Dark Theme**: Elegant dark color scheme with gradient accents
 
-Manage Quantity: Increase or decrease product quantities in the cart
+## 🛠️ Technologies Used
 
-Remove from Cart: Remove products from the cart
+- **Vue.js 3**: Core framework with Composition API
+- **Vue Router**: Client-side routing and navigation guards
+- **Pinia**: State management for cart, products, auth, and purchases
+- **Bootstrap 5**: UI framework for responsive design
+- **Bootstrap Icons**: Icon library
+- **Firebase API**: User authentication and data storage
+- **localStorage**: Client-side storage for cart, favorites, and purchases
 
-Calculate Total: Automatically calculate the total price
+## 📁 Project Structure
 
-Save Cart: Save cart contents in localStorage
-
-Wishlist
-
-Add to Wishlist: Add favorite products by clicking the heart icon
-
-Wishlist Page: View all favorited products in a dedicated page
-
-Remove from Wishlist: Remove products from the wishlist
-
-Wishlist Counter: Show the number of favorited products in the Header
-
-User Interface
-
-Responsive Design: Works on all devices (Mobile, Tablet, Desktop)
-
-Bootstrap 5: Built with Bootstrap for styling and layout
-
-Easy Navigation: Clear navigation bar in the Header
-
-Professional Icons: Uses Bootstrap Icons
-
-🛠️ Technologies Used
-
-Vue.js 3 – Main framework
-
-Vue Router – Page routing
-
-Pinia – State management
-
-Bootstrap 5 – UI styling
-
-Bootstrap Icons – Icons library
-
-Firebase API – User data and authentication storage
-
-localStorage – Store cart and wishlist locally
-
-📁 Project Structure
+\`\`\`
 electronics-store/
 ├── public/
 │ └── index.html
@@ -90,75 +79,86 @@ electronics-store/
 │ ├── store/
 │ │ ├── authStore.js
 │ │ ├── cartStore.js
-│ │ └── productsStore.js
+│ │ ├── productsStore.js
+│ │ └── purchasesStore.js
 │ ├── views/
+│ │ ├── AboutPage.vue
 │ │ ├── CartPage.vue
+│ │ ├── CheckoutPage.vue
+│ │ ├── ContactPage.vue
 │ │ ├── FavoritesPage.vue
 │ │ ├── HomePage.vue
 │ │ ├── LoginPage.vue
-│ │ ├── ProductDetailsPage.vue
+│ │ ├── MyPurchasesPage.vue
+│ │ ├── ProductDetailPage.vue
 │ │ ├── ProductsPage.vue
 │ │ └── SignupPage.vue
 │ ├── App.vue
 │ └── main.js
 ├── package.json
 └── README.md
+\`\`\`
 
-🚀 Installation & Running
-Requirements
+## 🚀 Installation and Setup
 
-Node.js (v14 or later)
+### Prerequisites
 
-npm or yarn
+- Node.js (version 14 or higher)
+- npm or yarn
 
-Steps
+### Installation Steps
 
-Clone the repository
+1. **Clone the repository**
+   \`\`\`bash
+   git clone <repository-url>
+   cd electronics-store
+   \`\`\`
 
-git clone <repository-url>
-cd electronics-store
+2. **Install dependencies**
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-Install dependencies
+3. **Run development server**
+   \`\`\`bash
+   npm run serve
+   \`\`\`
 
-npm install
+4. **Open in browser**
+   Navigate to: `http://localhost:8080`
 
-Run in development mode
+### Build for Production
 
-npm run serve
-
-Open in browser
-Go to: http://localhost:8080
-
-Build for production
+\`\`\`bash
 npm run build
+\`\`\`
 
-⚙️ Configuration
-Firebase API
+## ⚙️ Configuration
 
-The project uses Firebase API to store user data. Current API endpoint:
+### Firebase API
 
+The project uses Firebase API for user authentication and data storage. Current API endpoint:
+
+\`\`\`
 https://vue-test-e0e1e-default-rtdb.firebaseio.com/users.json
+\`\`\`
 
 To change the API endpoint:
 
-Open src/store/authStore.js
+1. Open `src/store/authStore.js`
+2. Locate the `apiUrl` variable
+3. Replace with your Firebase API URL
 
-Search for apiUrl
+### Customizing Products
 
-Replace the URL with your Firebase API
+To add or modify products:
 
-Customizing Products
+1. Open `src/store/productsStore.js`
+2. Edit the `products` array in the state
+3. Add new products or modify existing ones
 
-To add or edit products:
-
-Open src/store/productsStore.js
-
-Edit the products array in the state
-
-Add new products or edit existing ones
-
-Example product structure:
-
+Product structure example:
+\`\`\`javascript
 {
 id: 1,
 name: 'iPhone 14 Pro',
@@ -169,65 +169,68 @@ brand: 'Apple',
 description: 'Product description here',
 rating: 4.5
 }
+\`\`\`
 
-📖 User Guide
-For New Users
+## 📖 User Guide
 
-Sign Up
+### For New Users
 
-Click "Sign Up" in the Header
+1. **Registration**
 
-Enter name, email, and password
+   - Click "Sign Up" button in the header
+   - Enter name, email, and password
+   - Click "Sign Up" to create account
 
-Click "Register"
+2. **Login**
 
-Log In
+   - Click "Login" button in the header
+   - Enter email and password
+   - Click "Login" to access your account
 
-Click "Login" in the Header
+3. **Browse Products (No Login Required)**
 
-Enter email and password
+   - From homepage, click any category card
+   - Or navigate directly to "Products" page
+   - View product details by clicking on any product
 
-Click "Login"
+4. **Search for Products**
 
-Browse Products
+   - Use search input in the header
+   - Type product name, category, or brand
+   - Press Enter or click search icon
 
-From Home, click on any category
+5. **Add to Cart (Login Required)**
 
-Or go directly to the "Products" page
+   - Click "Add to Cart" button on product card
+   - Or go to product details page and select quantity
+   - Cart icon shows number of items
 
-Search for Products
+6. **Add to Favorites (Login Required)**
 
-Use the search bar in the Header
+   - Click heart icon on product card
+   - View favorites by clicking heart icon in header
+   - Remove from favorites by clicking heart again
 
-Type product name, category, or brand
+7. **Checkout (Login Required)**
 
-Press Enter or click the search button
+   - Click cart icon in header
+   - Review items and quantities
+   - Click "Proceed to Checkout"
+   - Fill in shipping information
+   - Complete order
 
-Add to Cart
+8. **View Purchase History (Login Required)**
+   - Click "My Purchases" in header dropdown
+   - View all completed orders
+   - See order details, dates, and totals
 
-Click "Add to Cart" on the product card
+## 🎨 Customization
 
-Or go to the product details page and click "Add to Cart"
+### Colors
 
-Add to Wishlist
+To change project colors, edit `src/assets/style.css`:
 
-Click the heart icon on the product card
-
-View favorites by clicking the heart icon in the Header
-
-Manage Cart
-
-Click the cart icon in the Header
-
-Increase or decrease quantity
-
-Remove products from the cart
-
-🎨 Customization
-Colors
-
-Edit src/assets/style.css to change colors:
-
+\`\`\`css
 :root {
 --primary-color: #007bff;
 --secondary-color: #6c757d;
@@ -235,55 +238,87 @@ Edit src/assets/style.css to change colors:
 --danger-color: #dc3545;
 --warning-color: #ffc107;
 }
+\`\`\`
 
-Fonts
+### Fonts
 
-Edit src/assets/style.css to change fonts:
+To change fonts, edit `src/assets/style.css`:
 
+\`\`\`css
 body {
 font-family: 'Arial', sans-serif;
 }
+\`\`\`
 
-🔒 Security
+## 🔒 Security
 
-All pages are protected by authentication
+- Protected routes require authentication
+- Public pages (Home, Products, Product Details, About, Contact) accessible without login
+- Passwords stored securely in Firebase
+- Local data (cart, favorites, purchases) stored per user in localStorage
+- Navigation guards prevent unauthorized access
 
-No page is accessible without login
+## 📱 Responsive Design
 
-Passwords are stored in Firebase
+- Mobile-first approach
+- Optimized layouts for all screen sizes
+- Touch-friendly interface on mobile devices
+- Collapsible navigation menu on small screens
+- Responsive product grids and cards
 
-Local data (cart & wishlist) is stored in localStorage
+## 🔄 State Management
 
-📝 Notes
+### Stores
 
-Project uses demo product data
+- **authStore**: User authentication and session management
+- **productsStore**: Product data, filtering, and search
+- **cartStore**: Shopping cart management per user
+- **purchasesStore**: Purchase history tracking per user
 
-Images are placeholders
+### Data Persistence
 
-Can be connected to a real API for product management
+- User sessions stored in localStorage
+- Cart contents persist per user
+- Favorites saved locally per user
+- Purchase history maintained per user
 
-Payment gateway integration can be added
+## 📝 Notes
 
-🤝 Contribution
+- Project uses demo product data
+- Images are placeholders
+- Can be connected to real API for product management
+- Payment gateway integration can be added
+- Email notifications can be implemented
 
-Feel free to contribute:
+## 🚀 Future Enhancements
 
-Fork the repo
+- Payment gateway integration (Stripe, PayPal)
+- Email notifications for orders
+- Product reviews and ratings
+- Admin dashboard for product management
+- Order status tracking
+- Multiple shipping addresses
+- Discount codes and promotions
+- Product recommendations
 
-Create a new branch (git checkout -b feature/AmazingFeature)
+## 🤝 Contributing
 
-Commit changes (git commit -m 'Add some AmazingFeature')
+Contributions are welcome! To contribute:
 
-Push to branch (git push origin feature/AmazingFeature)
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Open a Pull Request
+## 📄 License
 
-📄 License
+This project is open source and available for free use.
 
-This project is open-source and free to use.
+## 📞 Contact
 
-📞 Contact
+For questions or suggestions, feel free to reach out.
 
-If you have any questions or suggestions, feel free to get in touch.
+---
 
-Built with ❤️ using Vue.js & Bootstrap
+**Built with ❤️ using Vue.js and Bootstrap**

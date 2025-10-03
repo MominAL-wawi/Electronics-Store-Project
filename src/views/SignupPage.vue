@@ -2,10 +2,10 @@
   <div class="signup-page">
     <div class="container py-5">
       <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-5">
           <div class="card shadow">
-            <div class="card-body p-5">
-              <h2 class="text-center mb-4">Create a New Account</h2>
+            <div class="card-body p-3 p-sm-4 p-md-5">
+              <h2 class="text-center mb-4">Create New Account</h2>
 
               <div
                 v-if="successMessage"
@@ -108,6 +108,26 @@ const handleSignup = async () => {
   errorMessage.value = "";
 
   try {
+    // 1- جلب كل المستخدمين الموجودين
+    const checkResponse = await fetch(
+      "https://electronics-store-c9093-default-rtdb.firebaseio.com/Sign%20up.json"
+    );
+    const existingUsers = await checkResponse.json();
+
+    // 2- نتأكد إذا الإيميل مستخدم من قبل
+    const emailExists =
+      existingUsers &&
+      Object.values(existingUsers).some(
+        (user) => user.email === formData.value.email
+      );
+
+    if (emailExists) {
+      errorMessage.value = "This email is already registered. Please login.";
+      isLoading.value = false;
+      return;
+    }
+
+    // 3- إنشاء الحساب لو الإيميل غير مستخدم
     const response = await fetch(
       "https://electronics-store-c9093-default-rtdb.firebaseio.com/Sign%20up.json",
       {
@@ -124,9 +144,12 @@ const handleSignup = async () => {
       }
     );
 
-    if (response.ok) {
+    const data = await response.json();
+
+    // التحقق من نجاح التسجيل بناءً على وجود المفتاح الذي أرجعه Firebase
+    if (data && data.name) {
       successMessage.value =
-        "Account created successfully! Redirecting to login page...";
+        "Account created successfully! You will be redirected to the login page...";
       formData.value = { name: "", email: "", password: "" };
 
       setTimeout(() => {
@@ -137,8 +160,9 @@ const handleSignup = async () => {
         "An error occurred while creating the account. Please try again.";
     }
   } catch (error) {
+    console.error(error);
     errorMessage.value =
-      "A connection error occurred. Please check your internet connection.";
+      "Connection error. Please check your internet connection.";
   } finally {
     isLoading.value = false;
   }
@@ -162,5 +186,30 @@ const handleSignup = async () => {
   padding: 12px;
   font-size: 1.1rem;
   border-radius: 8px;
+}
+
+/* Added responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .signup-page {
+    min-height: calc(100vh - 150px);
+    padding: 1rem 0;
+  }
+
+  .card-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+  }
 }
 </style>

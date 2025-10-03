@@ -9,6 +9,7 @@ import ContactPage from "../views/ContactPage.vue";
 import SignupPage from "../views/SignupPage.vue";
 import LoginPage from "../views/LoginPage.vue";
 import FavoritesPage from "../views/FavoritesPage.vue";
+import MyPurchasesPage from "../views/MyPurchasesPage.vue";
 import { useAuthStore } from "../store/authStore";
 
 const routes = [
@@ -28,25 +29,31 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomePage,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: "/about",
     name: "About",
     component: AboutPage,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: "/products",
     name: "Products",
     component: ProductsPage,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: "/product/:id",
     name: "ProductDetail",
     component: ProductDetailPage,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: ContactPage,
+    meta: { requiresAuth: false },
   },
   {
     path: "/cart",
@@ -67,9 +74,9 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/contact",
-    name: "Contact",
-    component: ContactPage,
+    path: "/my-purchases",
+    name: "MyPurchases",
+    component: MyPurchasesPage,
     meta: { requiresAuth: true },
   },
 ];
