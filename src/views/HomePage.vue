@@ -44,6 +44,7 @@
                   </div>
                   <div class="col-md-6">
                     <img
+                      loading="lazy"
                       src="/iphone-15-pro-max.png?height=4000&width=600"
                       alt="Smartphones"
                       class="img-fluid hero-image"
@@ -74,6 +75,7 @@
                   </div>
                   <div class="col-md-6">
                     <img
+                      loading="lazy"
                       src="/dell-xps-15-laptop.jpg?height=4000&width=600"
                       alt="Laptops"
                       class="img-fluid hero-image"
@@ -104,6 +106,7 @@
                   </div>
                   <div class="col-md-6">
                     <img
+                      loading="lazy"
                       src="/airpods-pro-2.jpg?height=4000&width=600"
                       alt="Accessories"
                       class="img-fluid hero-image"
