@@ -19,7 +19,12 @@
         <div class="col-lg-6 mb-4">
           <div class="product-image-section">
             <div class="main-image bg-light rounded p-4 mb-3">
-              <img :src="product.image" :alt="product.name" class="img-fluid" />
+              <img
+                loading="lazy"
+                :src="product.image"
+                :alt="product.name"
+                class="img-fluid"
+              />
             </div>
           </div>
         </div>
