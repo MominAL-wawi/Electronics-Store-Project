@@ -13,6 +13,7 @@
           </div>
           <div class="col-lg-6">
             <img
+              loading="lazy"
               src="/images/about-hero.jpg"
               alt="About Us"
               class="img-fluid rounded shadow-lg"
@@ -82,6 +83,7 @@
         <div class="row g-4 mb-5">
           <div class="col-md-6">
             <img
+              loading="lazy"
               src="/images/about-warehouse.jpg"
               alt="Our Warehouse"
               class="img-fluid rounded shadow"
@@ -89,6 +91,7 @@
           </div>
           <div class="col-md-6">
             <img
+              loading="lazy"
               src="/images/about-team.jpg"
               alt="Customer Service"
               class="img-fluid rounded shadow"
