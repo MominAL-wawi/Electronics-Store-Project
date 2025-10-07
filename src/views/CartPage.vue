@@ -11,6 +11,7 @@
                 <div class="row align-items-center">
                   <div class="col-md-2">
                     <img
+                      loading="lazy"
                       :src="item.image"
                       :alt="item.name"
                       class="img-fluid rounded"
