@@ -3,7 +3,12 @@
     <div class="card h-100 border-0 shadow-sm">
       <div class="position-relative">
         <router-link :to="`/product/${product.id}`">
-          <img :src="product.image" class="card-img-top" :alt="product.name" />
+          <img
+            loading="lazy"
+            :src="product.image"
+            class="card-img-top"
+            :alt="product.name"
+          />
         </router-link>
 
         <div class="product-badges position-absolute top-0 start-0 m-2">
