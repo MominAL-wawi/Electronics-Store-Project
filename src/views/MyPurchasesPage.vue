@@ -52,6 +52,7 @@
                     class="d-flex align-items-center mb-3 pb-3 border-bottom"
                   >
                     <img
+                      loading="lazy"
                       :src="item.image"
                       :alt="item.name"
                       class="purchase-item-image me-3"
