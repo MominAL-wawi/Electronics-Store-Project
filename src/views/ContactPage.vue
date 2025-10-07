@@ -12,6 +12,7 @@
           </div>
           <div class="col-lg-6">
             <img
+              loading="lazy"
               src="/images/contact-hero.jpg"
               alt="Customer Support"
               class="img-fluid rounded shadow-lg"
@@ -208,6 +209,7 @@
         </div>
         <div class="map-placeholder rounded overflow-hidden shadow">
           <img
+            loading="lazy"
             src="/images/contact-office.jpg"
             alt="Store Location"
             class="img-fluid w-100"
