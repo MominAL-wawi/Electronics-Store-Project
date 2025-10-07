@@ -106,16 +106,19 @@
         </div>
         <div class="col-md-6 text-center text-md-end">
           <img
+            loading="lazy"
             src="/visa.png?height=30&width=50"
             alt="Visa"
             class="me-2 payment-logo"
           />
           <img
+            loading="lazy"
             src="/mastercard.png?height=30&width=50"
             alt="Mastercard"
             class="me-2 payment-logo"
           />
           <img
+            loading="lazy"
             src="/mada.png?height=30&width=50"
             alt="Mada"
             class="payment-logo"
